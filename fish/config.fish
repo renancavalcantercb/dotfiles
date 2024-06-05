@@ -32,6 +32,8 @@ alias k='kubectl'
 alias kgns='kubectl get ns'
 alias kgp='kubectl get pods'
 alias kcgc='kubectl config get-contexts'
+alias kcuc='kubectl config use-context'
+alias kccc='kubectl config current-context'
 alias kgi='kubectl get ingress'
 alias kgd='kubectl get deployment'
 alias kdd='kubectl describe deployment'
@@ -69,6 +71,9 @@ alias youtube='open -a "Firefox" "https://www.youtube.com/"'
 # SSH aliases
 alias ssh_gcp="ssh -i ~/.ssh/id_rsa renan-dev@34.16.203.5"
 alias ssh_orangepi="ssh -i ~/.ssh/orangepi orangepi@192.168.1.32"
+
+# jmeter alias
+alias jmeter='home && cd Downloads/apache-jmeter/bin && ./jmeter'
 
 # Functions
 function copy --description 'Copy file contents to clipboard'
