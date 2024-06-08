@@ -79,6 +79,9 @@ alias ssh_orangepi="ssh -i ~/.ssh/orangepi orangepi@192.168.1.32"
 # jmeter alias
 alias jmeter='home && cd Downloads/apache-jmeter/bin && ./jmeter'
 
+# utils alias
+alias delpng='cd /Users/renan-dev/Desktop && rm -rf *.png && echo "Deleted all .png files on Desktop"'
+
 # Functions
 function copy --description 'Copy file contents to clipboard'
     if test (count $argv) -eq 1
