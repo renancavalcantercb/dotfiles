@@ -6,6 +6,8 @@ table.insert(lvim.plugins, {
   "ellisonleao/gruvbox.nvim",
   dependencies = { "rktjmp/lush.nvim" },
 })
-
+table.insert(lvim.plugins, {
+  "stevearc/dressing.nvim",
+})
 return M
 
