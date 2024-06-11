@@ -16,10 +16,11 @@ source ~/.env
 # Aliases
 # Path aliases
 alias home='cd ~'
-alias configvim='home && cd .config/lvim && lvim config.lua'
-alias confignvim='home && cd .config/lvim && lvim config.lua'
-alias configlvim='home && cd .config/lvim && lvim config.lua'
-alias configfish='home && cd .config/fish && lvim config.fish'
+alias cgv='home && cd .config/lvim && lvim config.lua'
+alias cgnv='home && cd .config/lvim && lvim config.lua'
+alias cglv='home && cd .config/lvim && lvim config.lua'
+alias cgf='home && cd .config/fish && lvim config.fish'
+alias df='home && cd Desktop/dotfiles'
 
 # Typo corrections
 alias clera='clear'
