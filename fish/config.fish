@@ -78,7 +78,7 @@ alias ssh_gcp="ssh -i ~/.ssh/id_rsa renan-dev@34.16.203.5"
 alias ssh_orangepi="ssh -i ~/.ssh/orangepi orangepi@192.168.1.32"
 
 # jmeter alias
-alias jmeter='home && cd Downloads/apache-jmeter/bin && ./jmeter'
+alias jmeter='home && cd /Users/renan-dev/Desktop/jmeter/jmeter/bin && ./jmeter'
 
 # utils alias
 alias delpng='cd /Users/renan-dev/Desktop && rm -rf *.png && echo "Deleted all .png files on Desktop"'
