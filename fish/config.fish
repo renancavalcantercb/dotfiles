@@ -33,6 +33,10 @@ alias loadfish='source ~/.config/fish/config.fish'
 
 # Abbreviations
 alias g='git'
+alias cat='bat'
+alias grep='rg'
+
+# Kubernetes aliases 
 alias k='kubectl'
 alias kgns='kubectl get ns'
 alias kgp='kubectl get pods'
@@ -47,8 +51,20 @@ alias ksd='kubectl scale deployment'
 alias kcn='kubectl config set-context (kubectl config current-context) --namespace'
 alias kl='kubectl logs'
 alias klf='kubectl logs -f'
-alias cat='bat'
-alias grep='rg'
+
+# Docker aliases
+alias dc='docker-compose'
+alias dcu='docker-compose up -d'
+alias dcd='docker-compose down'
+alias dex='docker exec -it'
+alias di='docker inspect'
+alias dim='docker images'
+alias drmc='docker rm $(docker ps --all -q -f status=exited)'
+alias dl='docker logs'
+alias dps='docker ps'
+alias dpsa='docker ps -a'
+alias drmid='docker rmi -f'
+
 
 # lsd aliases
 alias ls='lsd'
