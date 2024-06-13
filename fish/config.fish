@@ -45,7 +45,6 @@ alias ked='kubectl edit deployment'
 alias kdd='kubectl describe deployment'
 alias ksd='kubectl scale deployment'
 alias kcn='kubectl config set-context (kubectl config current-context) --namespace'
-alias keti='kubectl exec -ti'
 alias kl='kubectl logs'
 alias klf='kubectl logs -f'
 alias cat='bat'
@@ -138,4 +137,9 @@ function keti
         echo "Usage: keti <pod_name>"
     end
 end
+
+function kgfv
+    kgd $argv -o jsonpath="{.spec.template.spec.containers[0].image}"
+end
+
 
