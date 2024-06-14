@@ -65,6 +65,15 @@ alias dps='docker ps'
 alias dpsa='docker ps -a'
 alias drmid='docker rmi -f'
 
+# Terraform aliases
+alias tf='terraform'
+alias tfa='terraform apply'
+alias tfc='terraform console'
+alias tfd='terraform destroy'
+alias tff='terraform fmt'
+alias tfg='terraform graph'
+alias tfim='terraform import'
+alias tfin='terraform init'
 
 # lsd aliases
 alias ls='lsd'
