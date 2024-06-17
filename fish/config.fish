@@ -166,16 +166,18 @@ end
 function kgfv
     kgd $argv -o jsonpath="{.spec.template.spec.containers[0].image}"
 end
-# Função para listar aliases de Kubernetes
+
+# Function to list Kubernetes aliases
 function ak8s
     alias | grep '^alias k'
 end
 
-# Função para listar aliases de Terraform
+# Function to list Terraform aliases
 function atf
     alias | grep '^alias tf'
 end
 
+# Function to list Docker aliases
 function ad 
   alias | grep '^alias d'
 end
