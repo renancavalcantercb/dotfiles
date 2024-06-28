@@ -51,6 +51,7 @@ alias ksd='kubectl scale deployment'
 alias kcn='kubectl config set-context (kubectl config current-context) --namespace'
 alias kl='kubectl logs'
 alias klf='kubectl logs -f'
+alias kdp='kubectl delete pod'
 
 # Docker aliases
 alias dc='docker-compose'
