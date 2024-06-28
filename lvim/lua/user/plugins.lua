@@ -9,5 +9,8 @@ table.insert(lvim.plugins, {
 table.insert(lvim.plugins, {
   "stevearc/dressing.nvim",
 })
+table.insert(lvim.plugins, {
+  "folke/trouble.nvim", depedencies = "kyazdani42/nvim-web-devicons"
+})
 return M
 
