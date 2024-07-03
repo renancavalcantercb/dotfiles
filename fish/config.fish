@@ -62,6 +62,7 @@ alias di='docker inspect'
 alias dim='docker images'
 alias drmc='docker rm $(docker ps --all -q -f status=exited)'
 alias dl='docker logs'
+alias dlf='docker logs -f'
 alias dps='docker ps'
 alias dpsa='docker ps -a'
 alias drmid='docker rmi -f'
@@ -128,15 +129,15 @@ function mongosh
     /opt/homebrew/bin/mongosh $argv
 end
 
-function mongosh_prod
+function mongoprod
     mongosh $MONGOSH_PROD_URL
 end
 
-function mongosh_dev
+function mongodev
     mongosh $MONGOSH_DEV_URL
 end
 
-function mongosh_ecommerce
+function mongoecommerce
     mongosh $MONGOSH_ECOMMERCE_URL
 end
 
