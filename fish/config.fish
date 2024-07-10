@@ -1,3 +1,5 @@
+set -gx EDITOR nvim
+
 # Paths
 set -gx PATH /opt/homebrew/bin $PATH
 set -gx PATH /opt/homebrew/opt/openvpn/sbin $PATH
@@ -168,6 +170,18 @@ end
 function kgfv
     kgd $argv -o jsonpath="{.spec.template.spec.containers[0].image}"
 end
+
+# function to get outbund pod IP
+function kgip
+    set pod_name $argv[1]
+    if test -z $pod_name
+        echo "Usage: kgip <pod_name>"
+        return 1
+    end
+    kubectl exec $pod_name -- curl -s https://api.ipify.org
+    echo
+end
+
 
 # Function to list Kubernetes aliases
 function ak8s
