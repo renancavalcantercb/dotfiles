@@ -197,3 +197,12 @@ end
 function ad 
   alias | grep '^alias d'
 end
+
+function genpass
+    if test (count $argv) -eq 1
+        python3 /Users/renan-dev/generate_password.py $argv[1]
+    else
+        echo "Uso: genpass <client>"
+    end
+end
+
