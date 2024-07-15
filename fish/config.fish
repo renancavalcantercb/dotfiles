@@ -48,6 +48,7 @@ alias kccc='kubectl config current-context'
 alias kgi='kubectl get ingress'
 alias kgd='kubectl get deployment'
 alias ked='kubectl edit deployment'
+alias kei='kubectl edit ingress'
 alias kdd='kubectl describe deployment'
 alias ksd='kubectl scale deployment'
 alias kcn='kubectl config set-context (kubectl config current-context) --namespace'
@@ -194,8 +195,8 @@ function atf
 end
 
 # Function to list Docker aliases
-function ad 
-  alias | grep '^alias d'
+function ad
+    alias | grep '^alias d'
 end
 
 function genpass
@@ -205,4 +206,3 @@ function genpass
         echo "Uso: genpass <client>"
     end
 end
-
