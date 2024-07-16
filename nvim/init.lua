@@ -1,4 +1,4 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
---
+vim.opt.langmenu = "en"
+vim.cmd("language en_US")
 
 require("config.lazy")
