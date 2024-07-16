@@ -18,9 +18,9 @@ source ~/.env
 # Aliases
 # Path aliases
 alias home='cd ~'
-alias cgv='home && cd .config/nvim && nvim config.lua'
-alias cgnv='home && cd .config/nvim && nvim config.lua'
-alias cglv='home && cd .config/nvim && nvim config.lua'
+alias cgv='home && cd .config/nvim && nvim init.lua'
+alias cgnv='home && cd .config/nvim && nvim init.lua'
+alias cglv='home && cd .config/nvim && nvim init.lua'
 alias cgf='home && cd .config/fish && nvim config.fish'
 alias df='home && cd Desktop/dotfiles'
 
