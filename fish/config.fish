@@ -3,6 +3,7 @@ set -gx EDITOR nvim
 # Paths
 set -gx PATH /opt/homebrew/bin $PATH
 set -gx PATH /opt/homebrew/opt/openvpn/sbin $PATH
+set -gx PATH /opt/homebrew/opt/python@3.11/bin/ $PATH
 
 # Docker configuration
 set -x DOCKER_HOST unix://$HOME/.colima/default/docker.sock
@@ -92,9 +93,9 @@ alias vim='nvim'
 alias nvim='nvim'
 
 # Python aliases
-alias py='python3.11'
-alias python='python3.11'
-alias python3='python3.11'
+# alias py='python3.11'
+# alias python='python3.11'
+# alias python3='python3.11'
 
 # Browser aliases
 alias openfirefox='open -a "Firefox"'
