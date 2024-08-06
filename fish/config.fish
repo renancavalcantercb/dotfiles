@@ -9,6 +9,7 @@ set -gx PATH /opt/homebrew/opt/python@3.11/bin/ $PATH
 set -x DOCKER_HOST unix://$HOME/.colima/default/docker.sock
 set -x LOOQBOX_HOME /Users/renan-dev/Desktop/looqbox-dev/looqbox/interno/demo-dynamic/looqbox-dev/config
 
+
 # Java configuration
 set -gx JAVA_HOME /Users/renan-dev/Library/Java/JavaVirtualMachines/corretto-21.0.2/Contents/Home
 set -gx PATH $JAVA_HOME/bin $PATH
@@ -19,9 +20,9 @@ source ~/.env
 # Aliases
 # Path aliases
 alias home='cd ~'
-alias cgv='home && cd .config/nvim && nvim init.lua'
-alias cgnv='home && cd .config/nvim && nvim init.lua'
-alias cglv='home && cd .config/nvim && nvim init.lua'
+alias cgv='home && cd .config && nvim nvim/'
+alias cgnv='home && cd .config && nvim nvim/'
+alias cglv='home && cd .config && nvim nvim/'
 alias cgf='home && cd .config/fish && nvim config.fish'
 alias df='home && cd Desktop/dotfiles'
 
@@ -34,8 +35,12 @@ alias cls='clear'
 # Useful aliases
 alias loadfish='source ~/.config/fish/config.fish'
 
+# Python aliases
+alias python='python3.11'
+
 # Abbreviations
 alias g='git'
+alias lg='lazygit'
 alias cat='bat'
 alias grep='rg'
 
@@ -50,6 +55,7 @@ alias kgi='kubectl get ingress'
 alias kgd='kubectl get deployment'
 alias ked='kubectl edit deployment'
 alias kei='kubectl edit ingress'
+alias kes='kubectl edit service'
 alias kdd='kubectl describe deployment'
 alias ksd='kubectl scale deployment'
 alias kcn='kubectl config set-context (kubectl config current-context) --namespace'
@@ -60,6 +66,7 @@ alias kdp='kubectl delete pod'
 # Docker aliases
 alias dc='docker-compose'
 alias dcu='docker-compose up -d'
+alias dcub='docker-compose up --build -d'
 alias dcd='docker-compose down'
 alias dex='docker exec -it'
 alias di='docker inspect'
@@ -91,11 +98,6 @@ alias lt='ls --tree'
 # LunarVim aliases
 alias vim='nvim'
 alias nvim='nvim'
-
-# Python aliases
-# alias py='python3.11'
-# alias python='python3.11'
-# alias python3='python3.11'
 
 # Browser aliases
 alias openfirefox='open -a "Firefox"'
@@ -202,7 +204,7 @@ end
 
 function genpass
     if test (count $argv) -eq 1
-        python3 /Users/renan-dev/generate_password.py $argv[1]
+        python /Users/renan-dev/generate_password.py $argv[1]
     else
         echo "Uso: genpass <client>"
     end
