@@ -91,7 +91,6 @@ return {
         button.key_format = "  %s"
       end
 
-      -- open dashboard after closing lazy
       if vim.o.filetype == "lazy" then
         vim.api.nvim_create_autocmd("WinClosed", {
           pattern = tostring(vim.api.nvim_get_current_win()),
