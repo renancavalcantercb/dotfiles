@@ -14,6 +14,10 @@ set -x LOOQBOX_HOME /Users/renan-dev/Desktop/looqbox-dev/looqbox/interno/demo-dy
 set -gx JAVA_HOME /Users/renan-dev/Library/Java/JavaVirtualMachines/corretto-21.0.2/Contents/Home
 set -gx PATH $JAVA_HOME/bin $PATH
 
+# GO configuration
+set -gx GOPATH /Users/renan-dev/Desktop/estudos
+set -gx PATH $GOPATH/bin $PATH
+
 # Load environment variables
 source ~/.env
 
@@ -186,6 +190,14 @@ function kgip
     echo
 end
 
+function kgpw
+    while true
+        clear
+        kubectl get pods
+        sleep 5
+    end
+end
+
 
 # Function to list Kubernetes aliases
 function ak8s
@@ -209,3 +221,8 @@ function genpass
         echo "Uso: genpass <client>"
     end
 end
+
+function bangbang --description 'Repeat last command'
+    eval (history --max=1)
+end
+alias '!!=bangbang'
