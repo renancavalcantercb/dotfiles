@@ -92,6 +92,12 @@ alias tfg='terraform graph'
 alias tfim='terraform import'
 alias tfin='terraform init'
 
+# Go aliases
+alias gob='go build'
+alias got='go test'
+alias gor='go run'
+alias goc='o clean -cache -modcache -i -r'
+
 # lsd aliases
 alias ls='lsd'
 alias l='ls -l'
