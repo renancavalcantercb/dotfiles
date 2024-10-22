@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEST_DIR="/Users/renan-dev/Desktop/dotfiles"
+DEST_DIR="/Users/renan-dev/Desktop/dotfiles/macos/"
 NVIM_DIR="${DEST_DIR}/nvim"
 LVIM_DIR="${DEST_DIR}/lvim"
 FISH_DIR="${DEST_DIR}/fish"
