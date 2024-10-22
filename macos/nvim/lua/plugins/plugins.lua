@@ -26,7 +26,6 @@ return {
   {
     dir = "/Users/renan-dev/Desktop/estudos/cli/db-cli-nvim",
     config = function()
-      -- Não precisamos de setup, chamamos diretamente a função
       vim.api.nvim_create_user_command("DBQuery", function(opts)
         require("dbcli").run_query(opts.args)
       end, { nargs = 1 })
