@@ -17,3 +17,7 @@ vim.api.nvim_set_keymap("n", "d", '"_d', { noremap = true, silent = true })
 
 -- allow use of `c` to change without yanking
 vim.api.nvim_set_keymap("n", "c", '"_c', { noremap = true, silent = true })
+
+-- invert the behavior of `i` and `a` in normal mode
+vim.api.nvim_set_keymap("n", "i", "a", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "a", "i", { noremap = true, silent = true })
