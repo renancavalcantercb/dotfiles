@@ -1,14 +1,15 @@
+# Editor configuration
 set -gx EDITOR nvim
 
 # Paths
 set -gx PATH /opt/homebrew/bin $PATH
 set -gx PATH /opt/homebrew/opt/openvpn/sbin $PATH
 set -gx PATH /opt/homebrew/opt/python@3.11/bin/ $PATH
+set -gx PATH $HOME/.cargo/bin $PATH # Adicionado para o Cargo
 
 # Docker configuration
 set -x DOCKER_HOST unix://$HOME/.colima/default/docker.sock
 set -x LOOQBOX_HOME /Users/renan-dev/Desktop/looqbox-dev/looqbox/interno/demo-dynamic/looqbox-dev/config
-
 
 # Java configuration
 set -gx JAVA_HOME /Users/renan-dev/Library/Java/JavaVirtualMachines/corretto-21.0.2/Contents/Home
@@ -29,6 +30,7 @@ alias cgnv='home && cd .config && nvim nvim/'
 alias cglv='home && cd .config && nvim nvim/'
 alias cgf='home && cd .config/fish && nvim config.fish'
 alias df='home && cd Desktop/dotfiles'
+alias todo='home && vim tasks.todo'
 
 # Typo corrections
 alias clera='clear'
@@ -41,6 +43,7 @@ alias loadfish='source ~/.config/fish/config.fish'
 
 # Python aliases
 alias python='python3.11'
+# alias pip='uv'
 
 # Abbreviations
 alias g='git'
@@ -100,7 +103,7 @@ alias goc='o clean -cache -modcache -i -r'
 
 # lsd aliases
 alias ls='lsd'
-alias l='ls -l'
+alias l='ls -lt'
 alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
@@ -228,7 +231,15 @@ function genpass
     end
 end
 
-function bangbang --description 'Repeat last command'
-    eval (history --max=1)
-end
-alias '!!=bangbang'
+# function pip
+#     if test (count $argv) -gt 0
+#         if string match -q install $argv[1]
+#             set -e argv[1]
+#             uv add $argv
+#         else
+#             command pip $argv
+#         end
+#     else
+#         command pip
+#     end
+# end
