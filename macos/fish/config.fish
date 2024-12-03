@@ -25,12 +25,12 @@ source ~/.env
 # Aliases
 # Path aliases
 alias home='cd ~'
-alias cgv='home && cd .config && nvim nvim/'
+alias cgv='vim ~/.config/nvim/'
 alias cgnv='home && cd .config && nvim nvim/'
 alias cglv='home && cd .config && nvim nvim/'
-alias cgf='home && cd .config/fish && nvim config.fish'
+alias cgf='vim ~/.config/fish/config.fish'
 alias df='home && cd Desktop/dotfiles'
-alias todo='home && vim tasks.todo'
+alias todo='vim ~/tasks.todo'
 
 # Typo corrections
 alias clera='clear'
