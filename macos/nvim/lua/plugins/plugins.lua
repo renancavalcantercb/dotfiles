@@ -31,4 +31,7 @@ return {
       end, { nargs = 1 })
     end,
   },
+  {
+    "sdeleon28/vim-todo",
+  },
 }
