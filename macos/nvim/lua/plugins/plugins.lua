@@ -31,7 +31,18 @@ return {
       end, { nargs = 1 })
     end,
   },
+  -- todo.nvim local plugin test
+  -- {
+  --   dir = "/Users/renan-dev/Desktop/estudos/lua/todo.nvim",
+  --   event = { "BufReadPre", "BufNewFile" }, -- Use eventos separados
+  --   config = function()
+  --     require("todo").setup()
+  --   end,
+  -- },
   {
-    "sdeleon28/vim-todo",
+    "renancavalcantercb/todo.nvim",
+    config = function()
+      require("todo").setup()
+    end,
   },
 }

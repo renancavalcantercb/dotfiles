@@ -29,7 +29,7 @@ alias cgv='vim ~/.config/nvim/'
 alias cgnv='home && cd .config && nvim nvim/'
 alias cglv='home && cd .config && nvim nvim/'
 alias cgf='vim ~/.config/fish/config.fish'
-alias df='home && cd Desktop/dotfiles'
+alias mydf='home && cd Desktop/dotfiles'
 alias todo='vim ~/tasks.todo'
 
 # Typo corrections
@@ -40,6 +40,7 @@ alias cls='clear'
 
 # Useful aliases
 alias loadfish='source ~/.config/fish/config.fish'
+alias top='btop'
 
 # Python aliases
 alias python='python3.11'
@@ -122,7 +123,7 @@ alias youtube='open -a "Firefox" "https://www.youtube.com/"'
 
 # SSH aliases
 alias ssh_gcp="ssh -i ~/.ssh/id_rsa renan-dev@34.16.203.5"
-alias ssh_orangepi="ssh -i ~/.ssh/orangepi orangepi@192.168.1.32"
+alias ssh_orangepi="ssh renanserv@192.168.1.18"
 
 # jmeter alias
 alias jmeter='home && cd /Users/renan-dev/Desktop/jmeter/jmeter/bin && ./jmeter'
@@ -140,7 +141,7 @@ function copy --description 'Copy file contents to clipboard'
             echo "File does not exist: $argv[1]"
         end
     else
-        echo "Usage: copy <file_name>"
+        echo "Usage: copy <file_name >"
     end
 end
 
@@ -180,7 +181,7 @@ function keti
     if test (count $argv) -eq 1
         kubectl exec -ti $argv[1] -- bash
     else
-        echo "Usage: keti <pod_name>"
+        echo "Usage: keti <pod_name >"
     end
 end
 
@@ -192,7 +193,7 @@ end
 function kgip
     set pod_name $argv[1]
     if test -z $pod_name
-        echo "Usage: kgip <pod_name>"
+        echo "Usage: kgip <pod_name >"
         return 1
     end
     kubectl exec $pod_name -- curl -s https://api.ipify.org
@@ -207,6 +208,13 @@ function kgpw
     end
 end
 
+function ktpw
+    while true
+        clear
+        kubectl top pod --namespace=looqconnectors
+        sleep 5
+    end
+end
 
 # Function to list Kubernetes aliases
 function ak8s
@@ -227,7 +235,7 @@ function genpass
     if test (count $argv) -eq 1
         python /Users/renan-dev/generate_password.py $argv[1]
     else
-        echo "Uso: genpass <client>"
+        echo "Uso: genpass <client >"
     end
 end
 
