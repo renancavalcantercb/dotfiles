@@ -19,6 +19,8 @@ set -gx PATH $JAVA_HOME/bin $PATH
 set -gx GOPATH /Users/renan-dev/Desktop/estudos
 set -gx PATH $GOPATH/bin $PATH
 
+set -x GOOGLE_APPLICATION_CREDENTIALS /Users/renan-dev/Desktop/nao_apagar/sa_iac.json
+
 # Load environment variables
 source ~/.env
 
@@ -123,7 +125,7 @@ alias youtube='open -a "Firefox" "https://www.youtube.com/"'
 
 # SSH aliases
 alias ssh_gcp="ssh -i ~/.ssh/id_rsa renan-dev@34.16.203.5"
-alias ssh_orangepi="ssh renanserv@192.168.1.18"
+alias ssh_orangepi="ssh renanserv@192.168.1.20"
 
 # jmeter alias
 alias jmeter='home && cd /Users/renan-dev/Desktop/jmeter/jmeter/bin && ./jmeter'
@@ -166,14 +168,27 @@ alias set-looqbox-customers 'gcloud config set project looqbox-customers'
 alias set-looqbox-production 'gcloud config set project looqbox-production'
 
 # Kubernetes context switch functions
+function use-looqbox-login
+    gcloud config set account $LOOQBOX_LOGIN_GCP
+end
+
 function use-looqbox-customers
-    kubectl config use-context gke_looqbox-production_southamerica-east1-a_looqbox-customers
+    use-looqbox-login
+    kcuc customers
     echo "Switched to Kubernetes context: looqbox-customers"
 end
 
 function use-looqbox-production
-    kubectl config use-context gke_looqbox-production_southamerica-east1-a_looqbox-production
+    use-looqbox-login
+    kcuc prod
     echo "Switched to Kubernetes context: looqbox-production"
+end
+
+function use-study
+    export GOOGLE_APPLICATION_CREDENTIALS=$STUDY_JSON_GCP
+    gcloud config set account $STUDY_LOGIN_GCP
+    gcloud config set project $STUDY_PROJECT_ID
+    echo "Switched to Kubernetes context: study"
 end
 
 # Kubernetes exec into pod with interactive terminal
@@ -208,13 +223,6 @@ function kgpw
     end
 end
 
-function ktpw
-    while true
-        clear
-        kubectl top pod --namespace=looqconnectors
-        sleep 5
-    end
-end
 
 # Function to list Kubernetes aliases
 function ak8s
@@ -238,16 +246,3 @@ function genpass
         echo "Uso: genpass <client >"
     end
 end
-
-# function pip
-#     if test (count $argv) -gt 0
-#         if string match -q install $argv[1]
-#             set -e argv[1]
-#             uv add $argv
-#         else
-#             command pip $argv
-#         end
-#     else
-#         command pip
-#     end
-# end
