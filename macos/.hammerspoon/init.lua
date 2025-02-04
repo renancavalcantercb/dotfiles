@@ -47,5 +47,5 @@ hs.hotkey.bind({ "option" }, "2", function()
 end)
 
 hs.hotkey.bind({ "option" }, "n", function()
-	hs.execute("/opt/homebrew/bin/yabai -m window --toggle min")
+	hs.execute("yabai -m window --toggle min")
 end)
