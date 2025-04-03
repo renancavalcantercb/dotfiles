@@ -13,13 +13,14 @@ set -x LOOQBOX_HOME /Users/renan-dev/Desktop/looqbox-dev/looqbox/interno/demo-dy
 
 # Java configuration
 set -gx JAVA_HOME /Users/renan-dev/Library/Java/JavaVirtualMachines/corretto-21.0.2/Contents/Home
+# set -gx JAVA_HOME /Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home
 set -gx PATH $JAVA_HOME/bin $PATH
 
 # GO configuration
 set -gx GOPATH /Users/renan-dev/Desktop/estudos
 set -gx PATH $GOPATH/bin $PATH
 
-set -x GOOGLE_APPLICATION_CREDENTIALS /Users/renan-dev/Desktop/nao_apagar/sa_iac.json
+set -x GOOGLE_APPLICATION_CREDENTIALS /Users/renan-dev/Desktop/nao_apagar/pub_sub.json
 
 # Load environment variables
 source ~/.env
@@ -58,6 +59,7 @@ alias grep='rg'
 alias k='kubectl'
 alias kgns='kubectl get ns'
 alias kgp='kubectl get pods'
+alias ktp='kubectl top pods'
 alias kcgc='kubectl config get-contexts'
 alias kcuc='kubectl config use-context'
 alias kccc='kubectl config current-context'
@@ -102,7 +104,7 @@ alias tfin='terraform init'
 alias gob='go build'
 alias got='go test'
 alias gor='go run'
-alias goc='o clean -cache -modcache -i -r'
+alias goc='go clean -cache -modcache -i -r'
 
 # lsd aliases
 alias ls='lsd'
@@ -131,7 +133,7 @@ alias ssh_orangepi="ssh renanserv@192.168.1.20"
 alias jmeter='home && cd /Users/renan-dev/Desktop/jmeter/jmeter/bin && ./jmeter'
 
 # utils alias
-alias delpng='cd /Users/renan-dev/Desktop && rm -rf *.png && echo "Deleted all .png files on Desktop"'
+alias delpng='rm -rf /Users/renan-dev/Desktop/*.png && echo "Deleted all .png files on Desktop"'
 
 # Functions
 function copy --description 'Copy file contents to clipboard'
@@ -223,6 +225,10 @@ function kgpw
     end
 end
 
+function krr
+    set name $argv
+    kubectl rollout restart deployment/$name -n $name
+end
 
 # Function to list Kubernetes aliases
 function ak8s
