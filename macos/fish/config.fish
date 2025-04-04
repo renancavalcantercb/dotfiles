@@ -247,7 +247,7 @@ end
 
 function genpass
     if test (count $argv) -eq 1
-        python /Users/renan-dev/generate_password.py $argv[1]
+        go run /Users/renan-dev/Desktop/gen_pass/main.go $argv[1]
     else
         echo "Uso: genpass <client >"
     end
