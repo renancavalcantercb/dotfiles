@@ -2,8 +2,8 @@
 
 DEST_DIR="/home/renan/Desktop/dotfiles/manjaro"
 NVIM_DIR="${DEST_DIR}/nvim"
-I3_DIR=¨${DEST_DIR}/i3¨
-I3_BLOCKS_DIR=¨${DEST_DIR}/i3blocks¨
+I3_DIR="${DEST_DIR}/i3"
+I3_BLOCKS_DIR="${DEST_DIR}/i3blocks"
 
 mkdir -p "${NVIM_DIR}"
 mkdir -p "${I3_DIR}"
