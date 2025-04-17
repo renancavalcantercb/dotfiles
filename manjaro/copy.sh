@@ -5,6 +5,7 @@ NVIM_DIR="${DEST_DIR}/nvim"
 I3_DIR="${DEST_DIR}/i3"
 I3_BLOCKS_DIR="${DEST_DIR}/i3blocks"
 ROFI_DIR="${DEST_DIR}/rofi"
+ALACRITTY_DIR="${DEST_DIR}/alacritty"
 
 mkdir -p "$NVIM_DIR" "$I3_DIR" "$I3_BLOCKS_DIR" "$ROFI_DIR"
 
@@ -16,7 +17,7 @@ else
 fi
 
 # Copy config directories using rsync
-for CONFIG in nvim i3 i3blocks rofi; do
+for CONFIG in nvim i3 i3blocks rofi alacritty; do
   SRC="$HOME/.config/$CONFIG/"
   DEST="${DEST_DIR}/${CONFIG}/"
   if [ -d "$SRC" ]; then
