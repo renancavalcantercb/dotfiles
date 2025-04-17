@@ -6,19 +6,24 @@ I3_DIR="${DEST_DIR}/i3"
 I3_BLOCKS_DIR="${DEST_DIR}/i3blocks"
 ROFI_DIR="${DEST_DIR}/rofi"
 
-mkdir -p "${NVIM_DIR}"
-mkdir -p "${I3_DIR}"
-mkdir -p "${I3_BLOCKS_DIR}"
-mkdir -p "${ROFI_DIR}"
+mkdir -p "$NVIM_DIR" "$I3_DIR" "$I3_BLOCKS_DIR" "$ROFI_DIR"
 
-cp ~/.zshrc "${DEST_DIR}"
+# Copy zshrc
+if [ -f ~/.zshrc ]; then
+  cp ~/.zshrc "$DEST_DIR"
+else
+  echo "Warning: ~/.zshrc not found"
+fi
 
-cp -r ~/.config/nvim/ "${NVIM_DIR}/"
+# Copy config directories using rsync
+for CONFIG in nvim i3 i3blocks rofi; do
+  SRC="$HOME/.config/$CONFIG/"
+  DEST="${DEST_DIR}/${CONFIG}/"
+  if [ -d "$SRC" ]; then
+    rsync -av --delete "$SRC" "$DEST"
+  else
+    echo "Warning: $SRC not found, skipping..."
+  fi
+done
 
-cp -r ~/.config/i3/ "${I3_DIR}/"
-
-cp -r ~/.config/i3blocks/ "${I3_DIR}/"
-
-cp -r ~/.config/rofi/ "${I3_DIR}/"
-
-echo "Copied dotfiles to ${DEST_DIR}"
+echo "Dotfiles backup completed at ${DEST_DIR}"
