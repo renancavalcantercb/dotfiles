@@ -4,7 +4,7 @@ set -gx EDITOR nvim
 # Paths
 set -gx PATH /opt/homebrew/bin $PATH
 set -gx PATH /opt/homebrew/opt/openvpn/sbin $PATH
-set -gx PATH /opt/homebrew/opt/python@3.11/bin/ $PATH
+set -gx PATH /opt/homebrew/opt/python@3.12/bin/ $PATH
 set -gx PATH $HOME/.cargo/bin $PATH # Adicionado para o Cargo
 
 # Docker configuration
@@ -46,7 +46,7 @@ alias loadfish='source ~/.config/fish/config.fish'
 alias top='btop'
 
 # Python aliases
-alias python='python3.11'
+alias python='python3.12'
 # alias pip='uv'
 
 # Abbreviations
@@ -252,3 +252,5 @@ function genpass
         echo "Uso: genpass <client >"
     end
 end
+
+starship init fish | source
