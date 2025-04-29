@@ -1,30 +1,33 @@
 #!/bin/bash
 
-DEST_DIR="/Users/renan-dev/Desktop/dotfiles/macos/"
-NVIM_DIR="${DEST_DIR}/nvim"
-LVIM_DIR="${DEST_DIR}/lvim"
-FISH_DIR="${DEST_DIR}/fish"
-HAMMERSPOON_DIR="${DEST_DIR}/.hammerspoon"
-SKETCHYBAR_DIR="${DEST_DIR}/.config/sketchybar"
+DEST_DIR="$HOME/Desktop/dotfiles/macos"
+mkdir -p "$DEST_DIR"
 
-mkdir -p "${NVIM_DIR}"
-mkdir -p "${LVIM_DIR}"
-mkdir -p "${FISH_DIR}"
-mkdir -p "${HAMMERSPOON_DIR}"
-mkdir -p "${SKETCHYBAR_DIR}"
+copy_item() {
+  local src="$1"
+  local dest="$2"
+  mkdir -p "$dest"
 
-cp ~/.tmux.conf "${DEST_DIR}/"
+  if [ -f "$src" ]; then
+    cp "$src" "$dest/"
+  elif [ -d "$src" ]; then
+    rsync -a "$src" "$dest/"
+  fi
+}
 
-cp ~/.config/lvim/config.lua "${LVIM_DIR}/"
+copy_item "$HOME/.config/nvim/" "$DEST_DIR/nvim"
+copy_item "$HOME/.config/lvim/" "$DEST_DIR/lvim"
+copy_item "$HOME/.config/fish/" "$DEST_DIR/fish"
+copy_item "$HOME/.config/sketchybar/" "$DEST_DIR/sketchybar"
+copy_item "$HOME/.config/aerospace/" "$DEST_DIR/aerospace"
+copy_item "$HOME/.config/kitty/" "$DEST_DIR/kitty"
+copy_item "$HOME/.config/starship.toml" "$DEST_DIR/starship"
+copy_item "$HOME/.config/bat/config" "$DEST_DIR/bat"
+copy_item "$HOME/.config/borders/" "$DEST_DIR/borders"
+copy_item "$HOME/.config/skhd/skhdrc" "$DEST_DIR/skhd"
+copy_item "$HOME/.config/raycast/" "$DEST_DIR/raycast"
+copy_item "$HOME/.config/karabiner/" "$DEST_DIR/karabiner"
 
-cp -r ~/.config/lvim/lua "${LVIM_DIR}/"
+cp "$HOME/.tmux.conf" "$DEST_DIR/"
 
-cp -r ~/.config/nvim/ "${NVIM_DIR}/"
-
-cp -r ~/.config/fish/* "${FISH_DIR}/"
-
-cp -r ~/.hammerspoon/ "${HAMMERSPOON_DIR}"
-
-cp -r ~/.config/sketchybar/ "${SKETCHYBAR_DIR}"
-
-echo "Copied dotfiles to ${DEST_DIR}"
+echo "Copied dotfiles to $DEST_DIR"
