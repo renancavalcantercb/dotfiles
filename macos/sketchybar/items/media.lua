@@ -1,24 +1,16 @@
 local icons = require "icons"
-local colors = require("colors").sections.media
+local colors = require("colors").sections.media or {
+  label = "0xffaaffcc",
+}
 
-local whitelist = { ["Spotify"] = true, ["Music"] = true }
-
-local media_playback = sbar.add("item", {
+local media_playback = sbar.add("item", "widgets.media", {
   position = "right",
   icon = {
     max_chars = 50,
     padding_left = 8,
   },
-  label = {
-    string = icons.separators.left .. " " .. icons.music,
-    padding_right = 8,
-    color = colors.label,
-  },
-  popup = {
-    horizontal = true,
-    align = "center",
-    y_offset = 2,
-  },
+  label = { string = icons.separators.left .. " " .. icons.music, color = colors.label, padding_right = 8 },
+  update_freq = 5,
   padding_right = 8,
 })
 
@@ -50,10 +42,26 @@ sbar.add("item", {
   click_script = "nowplaying-cli next",
 })
 
-media_playback:subscribe("media_change", function(env)
-  if whitelist[env.INFO.app] then
-    local drawing = (env.INFO.state == "playing")
-    media_playback:set { drawing = drawing, icon = env.INFO.artist .. " - " .. env.INFO.title }
+media_playback:subscribe({ "routine" }, function()
+  local icon = ""
+  local label = icons.separators.left .. " " .. icons.music
+
+  local handle = io.popen "/Users/renan-dev/Desktop/estudos/nowplaying/main.py"
+  local out = handle:read("*a"):gsub("%s+$", "")
+  handle:close()
+
+  if out == "NONE" then
+    media_playback:set { drawing = true, label = { string = "Spotify", color = colors.label } }
+  else
+    local name, artist, cover = out:match "^(.-)%|%|%|(.-)%|%|%|(.*)$"
+    label = string.format("%s — %s %s", name, artist, icons.music)
+    if name and artist then
+      media_playback:set {
+        drawing = true,
+        icon = icon,
+        label = { string = label },
+      }
+    end
   end
 end)
 
@@ -80,5 +88,5 @@ media_playback:subscribe("mouse.clicked", function(_)
       padding_right = 8,
     }
   end)
-  media_playback:set { popup = { drawing = "toggle" } }
+  media_playback:set { popup = { drawing = "toggle", horizontal = true } }
 end)

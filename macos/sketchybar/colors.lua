@@ -61,7 +61,7 @@ M.sections = {
       mid = theme.gold,  -- Dourado para bateria média
       high = theme.pine,  -- Verde azulado para bateria alta
     },
-    wifi = { icon = theme.rose },  -- Rosa para o ícone de wifi
+    vpn = { icon = theme.rose },  -- Rosa para o ícone de vpn
     volume = {
       icon = theme.foam,  -- Azul claro para o ícone de volume
       popup = {

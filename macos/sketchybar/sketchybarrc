@@ -1,5 +1,10 @@
 #!/opt/homebrew/bin/lua
 
--- Load the sketchybar-package and prepare the helper binaries
-require("helpers")
-require("init")
+-- Carrega os módulos se existirem
+require "helpers"
+require "init"
+
+-- Define os atributos do item "media"
+sketchybar("--add", "item", "media", "center")
+sketchybar("--set", "media", "script=/Users/renan-dev/.config/sketchybar/helpers/media.sh", "updates=on")
+sketchybar("--subscribe", "media", "media_change")

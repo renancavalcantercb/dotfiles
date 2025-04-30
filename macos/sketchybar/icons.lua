@@ -39,7 +39,7 @@ local icons = {
       _0 = "􀛪",
       charging = "􀢋",
     },
-    wifi = {
+    vpn = {
       upload = "􀄨",
       download = "􀄩",
       connected = "􀙇",

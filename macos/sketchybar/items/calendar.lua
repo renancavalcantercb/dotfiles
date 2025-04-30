@@ -19,7 +19,7 @@ local cal = sbar.add("item", {
   padding_left = 10,
   position = "right",
   update_freq = 30,
-  click_script = "open -a 'Calendar'",
+  click_script = "open 'https://calendar.google.com/calendar/u/0/r?pli=1'",
 })
 
 cal:subscribe("mouse.clicked", function()
