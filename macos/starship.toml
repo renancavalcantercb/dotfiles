@@ -14,9 +14,9 @@ $time \
 $line_break  \
 [󱞪](fg:iris) """
 
-palette = "rose-pine-moon"
+palette = "tokyonight_night"
 
-[palettes.rose-pine-moon]
+[palettes.tokyonight_night]
 overlay = "#393552"
 love = "#eb6f92"
 gold = "#f6c177"
@@ -71,7 +71,7 @@ style_user = "bg:overlay fg:iris"
 
 [time]
 disabled = false
-format = "[](fg:overlay)[ $time  ]($style)[](fg:overlay)"
+format = "[](fg:overlay)[ $time ]($style)[](fg:overlay)"
 style = "bg:overlay fg:rose"
 time_format = "%I:%M%P"
 use_12hr = false
