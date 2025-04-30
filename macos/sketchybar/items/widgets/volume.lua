@@ -9,7 +9,6 @@ local volume_icon = sbar.add("item", "widgets.volume", {
     color = colors.icon,
   },
   label = { drawing = false },
-  background = { drawing = false },
   popup = {
     align = "center",
     y_offset = 2,
@@ -91,7 +90,6 @@ local function volume_toggle_details(env)
             width = popup_width,
             align = "center",
             label = { string = device, color = color },
-            background = { drawing = false },
             click_script = 'SwitchAudioSource -s "'
               .. device
               .. '" && sketchybar --set /volume.device\\.*/ label.color='

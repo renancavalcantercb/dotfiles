@@ -12,7 +12,35 @@ local media_playback = sbar.add("item", "widgets.media", {
   label = { string = icons.separators.left .. " " .. icons.music, color = colors.label, padding_right = 8 },
   update_freq = 5,
   padding_right = 8,
+  click_script = "open -a Spotify",
 })
+
+media_playback:subscribe({ "routine" }, function()
+  local icon = ""
+  local label = icons.separators.left .. " " .. icons.music
+
+  local handle = io.popen "/Users/renan-dev/Desktop/estudos/nowplaying/main.py"
+  local out = handle:read("*a"):gsub("%s+$", "")
+  handle:close()
+
+  if out == "NONE" then
+    media_playback:set {
+      drawing = true,
+      label = { string = "Spotify", color = colors.label },
+    }
+  else
+    local name, artist, cover = out:match "^(.-)%|%|%|(.-)%|%|%|(.*)$"
+    label = string.format("%s — %s %s", name, artist, icons.music)
+    if name and artist then
+      media_playback:set {
+        drawing = true,
+        icon = icon,
+        label = { string = label },
+        click_script = "nowplaying-cli togglePlayPause",
+      }
+    end
+  end
+end)
 
 sbar.add("item", {
   position = "popup." .. media_playback.name,
@@ -42,29 +70,6 @@ sbar.add("item", {
   click_script = "nowplaying-cli next",
 })
 
-media_playback:subscribe({ "routine" }, function()
-  local icon = ""
-  local label = icons.separators.left .. " " .. icons.music
-
-  local handle = io.popen "/Users/renan-dev/Desktop/estudos/nowplaying/main.py"
-  local out = handle:read("*a"):gsub("%s+$", "")
-  handle:close()
-
-  if out == "NONE" then
-    media_playback:set { drawing = true, label = { string = "Spotify", color = colors.label } }
-  else
-    local name, artist, cover = out:match "^(.-)%|%|%|(.-)%|%|%|(.*)$"
-    label = string.format("%s — %s %s", name, artist, icons.music)
-    if name and artist then
-      media_playback:set {
-        drawing = true,
-        icon = icon,
-        label = { string = label },
-      }
-    end
-  end
-end)
-
 media_playback:subscribe("mouse.clicked", function(_)
   sbar.animate("tanh", 8, function()
     media_playback:set {
@@ -88,5 +93,7 @@ media_playback:subscribe("mouse.clicked", function(_)
       padding_right = 8,
     }
   end)
-  media_playback:set { popup = { drawing = "toggle", horizontal = true } }
+  if out ~= "NONE" then
+    media_playback:set { popup = { drawing = "toggle", horizontal = true } }
+  end
 end)
