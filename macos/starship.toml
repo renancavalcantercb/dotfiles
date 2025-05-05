@@ -1,5 +1,5 @@
-
 format = """
+$hostname \
 $username \
 $directory \
 $git_branch \
@@ -10,6 +10,11 @@ $nodejs \
 $rust \
 $python \
 $dotnet \
+$terraform \
+$docker_context \
+$kubernetes \
+$shell \
+$status \
 $time \
 $line_break  \
 [󱞪](fg:iris) """
@@ -69,6 +74,11 @@ show_always = true
 style_root = "bg:overlay fg:iris"
 style_user = "bg:overlay fg:iris"
 
+[hostname]
+ssh_only = true
+format = "[](fg:overlay)[ 🖥 $hostname ]($style)[](fg:overlay)"
+style = "bg:overlay fg:gold"
+
 [time]
 disabled = false
 format = "[](fg:overlay)[ $time ]($style)[](fg:overlay)"
@@ -77,24 +87,12 @@ time_format = "%I:%M%P"
 use_12hr = false
 
 # Languages
-[bun]
-style = "bg:overlay fg:pine"
-format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
-disabled = false
-symbol = " "
 
-[dotnet]
-style = "bg:overlay fg:pine"
+[golang]
 format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
-disabled = false
-detect_extensions = ["csproj", "fsproj", "xproj", "sln"]
-symbol = " "
-
-[lua]
 style = "bg:overlay fg:pine"
-format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
 disabled = false
-symbol = ""
+symbol = " "
 
 [nodejs]
 style = "bg:overlay fg:pine"
@@ -113,3 +111,48 @@ style = "bg:overlay fg:pine"
 format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
 disabled = false
 symbol = " "
+detect_files = [
+  "pyproject.toml",
+  "requirements.txt",
+  "Pipfile",
+  ".python-version",
+  ".venv",
+]
+
+[dotnet]
+style = "bg:overlay fg:pine"
+format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+disabled = false
+detect_extensions = ["csproj", "fsproj", "xproj", "sln"]
+symbol = " "
+
+[terraform]
+format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
+style = "bg:overlay fg:foam"
+disabled = false
+symbol = " "
+
+[docker_context]
+format = "[](fg:overlay)[🐳 $context](bg:overlay fg:iris)[](fg:overlay)"
+style = "bg:overlay fg:iris"
+disabled = false
+only_with_files = true
+
+[kubernetes]
+format = "[](fg:overlay)[$symbol$context( \\($namespace\\))]($style)[](fg:overlay)"
+style = "bg:overlay fg:rose"
+disabled = false
+symbol = "☸ "
+detect_files = [".kube/config", ".kube"]
+
+[shell]
+format = "[](fg:overlay)[ $indicator]($style)[](fg:overlay)"
+style = "bg:overlay fg:gold"
+disabled = false
+
+[status]
+format = '[](fg:overlay)[ $symbol ]($style)[](fg:overlay)'
+style = 'bg:overlay fg:love'
+symbol = '✘'
+success_symbol = '✔'
+disabled = false
