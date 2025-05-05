@@ -17,7 +17,7 @@ local media_playback = sbar.add("item", "widgets.media", {
 
 media_playback:subscribe({ "routine" }, function()
   local icon = ""
-  local label = icons.separators.left .. " " .. icons.music
+  local label = "Spotify" .. icons.music
 
   local handle = io.popen "/Users/renan-dev/Desktop/estudos/nowplaying/main.py"
   local out = handle:read("*a"):gsub("%s+$", "")
@@ -26,11 +26,17 @@ media_playback:subscribe({ "routine" }, function()
   if out == "NONE" then
     media_playback:set {
       drawing = true,
-      label = { string = "Spotify", color = colors.label },
+      label = { string = "Spotify " .. icons.music, color = colors.label },
     }
   else
     local name, artist, cover = out:match "^(.-)%|%|%|(.-)%|%|%|(.*)$"
+
+    if not name or not artist then
+      out = "NONE"
+    end
+
     label = string.format("%s — %s %s", name, artist, icons.music)
+
     if name and artist then
       media_playback:set {
         drawing = true,
@@ -51,6 +57,7 @@ sbar.add("item", {
   background = { drawing = false },
   click_script = "nowplaying-cli previous",
 })
+
 sbar.add("item", {
   position = "popup." .. media_playback.name,
   padding_left = 6,
@@ -60,6 +67,7 @@ sbar.add("item", {
   background = { drawing = false },
   click_script = "nowplaying-cli togglePlayPause",
 })
+
 sbar.add("item", {
   position = "popup." .. media_playback.name,
   padding_left = 6,
@@ -93,6 +101,7 @@ media_playback:subscribe("mouse.clicked", function(_)
       padding_right = 8,
     }
   end)
+
   if out ~= "NONE" then
     media_playback:set { popup = { drawing = "toggle", horizontal = true } }
   end
