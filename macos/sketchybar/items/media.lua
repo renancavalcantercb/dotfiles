@@ -9,7 +9,7 @@ local media_playback = sbar.add("item", "widgets.media", {
     max_chars = 50,
     padding_left = 8,
   },
-  label = { string = icons.separators.left .. " " .. icons.music, color = colors.label, padding_right = 8 },
+  label = { string = icons.separators.left .. " " .. icons.music, color = colors.text, padding_right = 8 },
   update_freq = 5,
   padding_right = 8,
   click_script = "open -a Spotify",
@@ -26,7 +26,7 @@ media_playback:subscribe({ "routine" }, function()
   if out == "NONE" then
     media_playback:set {
       drawing = true,
-      label = { string = "Spotify " .. icons.music, color = colors.label },
+      label = { string = "Spotify " .. icons.music, color = colors.text },
     }
   else
     local name, artist, cover = out:match "^(.-)%|%|%|(.-)%|%|%|(.*)$"
