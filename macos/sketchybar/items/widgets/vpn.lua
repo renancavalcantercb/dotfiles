@@ -1,6 +1,6 @@
-local icons = require("icons")
-local colors = require("colors")
-local settings = require("settings")
+local icons = require "icons"
+local colors = require "colors"
+local settings = require "settings"
 
 local vpn_ip = "34.95.141.123"
 
@@ -23,7 +23,7 @@ local vpn = sbar.add("item", "widgets.vpn", {
 
 local function is_vpn_connected()
   local handle = io.popen("netstat -rn | grep '" .. vpn_ip .. "'")
-  local result = handle:read("*a")
+  local result = handle:read "*a"
   handle:close()
   return result ~= ""
 end
@@ -39,18 +39,18 @@ vpn:subscribe("routine", function()
     color = colors.green
   end
 
-  vpn:set({
+  vpn:set {
     icon = {
       string = icon,
       color = color,
     },
     label = { string = label },
-  })
+  }
 end)
 
 vpn:subscribe("mouse.clicked", function(env)
   local drawing = vpn:query().popup.drawing
-  vpn:set({ popup = { drawing = "toggle" } })
+  vpn:set { popup = { drawing = "toggle" } }
 end)
 
 -- Remove bracket and padding unless needed, they are not present in your code
@@ -108,28 +108,22 @@ local router = sbar.add("item", {
 })
 
 local function hide_details()
-  vpn:set({ popup = { drawing = false } })
+  vpn:set { popup = { drawing = false } }
 end
 
 local function toggle_details()
   local should_draw = vpn:query().popup.drawing == "off"
   if should_draw then
-    vpn:set({ popup = { drawing = true } })
+    vpn:set { popup = { drawing = true } }
     sbar.exec("ipconfig getifaddr en1", function(result)
-      ip:set({ label = result })
+      ip:set { label = result }
     end)
-    sbar.exec(
-      "networksetup -getinfo Wi-Fi | awk -F 'Subnet mask: ' '/^Subnet mask: / {print $2}'",
-      function(result)
-        mask:set({ label = result })
-      end
-    )
-    sbar.exec(
-      "networksetup -getinfo Wi-Fi | awk -F 'Router: ' '/^Router: / {print $2}'",
-      function(result)
-        router:set({ label = result })
-      end
-    )
+    sbar.exec("networksetup -getinfo Wi-Fi | awk -F 'Subnet mask: ' '/^Subnet mask: / {print $2}'", function(result)
+      mask:set { label = result }
+    end)
+    sbar.exec("networksetup -getinfo Wi-Fi | awk -F 'Router: ' '/^Router: / {print $2}'", function(result)
+      router:set { label = result }
+    end)
   else
     hide_details()
   end
