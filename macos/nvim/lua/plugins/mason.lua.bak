@@ -1,0 +1,32 @@
+return {
+    -- Extend mason configuration
+    {
+        "mason-org/mason.nvim",
+        opts = {
+            ui = {
+                border = "rounded",
+                icons = {
+                    package_installed = "✓",
+                    package_pending = "➜",
+                    package_uninstalled = "✗",
+                },
+            },
+            ensure_installed = {
+                "stylua",
+                "prettier",
+                "black",
+                "eslint_d",
+                "ruff",
+                "shellcheck",
+            },
+        },
+    },
+
+    -- Extend mason-lspconfig
+    {
+        "mason-org/mason-lspconfig.nvim",
+        opts = {
+            automatic_installation = true,
+        },
+    },
+}
