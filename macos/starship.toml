@@ -108,9 +108,9 @@ symbol = ""
 
 [python]
 style = "bg:overlay fg:pine"
-format = "[](fg:overlay)[$symbol$version]($style)[](fg:overlay) "
-disabled = false
 symbol = " "
+format = "[](fg:overlay)[$symbol$version(\\($virtualenv\\))]($style)[](fg:overlay) "
+disabled = false
 detect_files = [
   "pyproject.toml",
   "requirements.txt",
