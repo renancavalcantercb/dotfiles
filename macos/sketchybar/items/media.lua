@@ -10,7 +10,7 @@ local media_playback = sbar.add("item", "widgets.media", {
     padding_left = 8,
   },
   label = { string = icons.separators.left .. " " .. icons.music, color = colors.text, padding_right = 8 },
-  update_freq = 5,
+  update_freq = 300,
   padding_right = 8,
   click_script = "open -a Spotify",
 })
