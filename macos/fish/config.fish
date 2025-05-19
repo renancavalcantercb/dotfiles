@@ -12,8 +12,8 @@ set -x DOCKER_HOST unix://$HOME/.colima/default/docker.sock
 set -x LOOQBOX_HOME /Users/renan-dev/Desktop/looqbox-dev/looqbox/interno/demo-dynamic/looqbox-dev/config
 
 # Java configuration
-set -gx JAVA_HOME /Users/renan-dev/Library/Java/JavaVirtualMachines/corretto-21.0.2/Contents/Home
-# set -gx JAVA_HOME /Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home
+# set -gx JAVA_HOME /Users/renan-dev/Library/Java/JavaVirtualMachines/corretto-21.0.2/Contents/Home/bin/java
+set -gx JAVA_HOME /Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home/bin/java
 set -gx PATH $JAVA_HOME/bin $PATH
 
 # GO configuration
@@ -34,6 +34,7 @@ alias cglv='home && cd .config && nvim nvim/'
 alias cgf='vim ~/.config/fish/config.fish'
 alias mydf='home && cd Desktop/dotfiles'
 alias todo='vim ~/tasks.todo'
+alias looq_config='vim ~/Desktop/looqbox-dev/looqbox/interno/demo-dynamic/looqbox-dev/config'
 
 # Typo corrections
 alias clera='clear'
@@ -195,10 +196,30 @@ end
 
 # Kubernetes exec into pod with interactive terminal
 function keti
-    if test (count $argv) -eq 1
-        kubectl exec -ti $argv[1] -- bash
+    set -l pod_name ""
+    set -l namespace ""
+
+    for i in (seq (count $argv))
+        switch $argv[$i]
+            case -n
+                set namespace $argv[(math $i + 1)]
+                set i (math $i + 1)
+            case '*'
+                if test -z "$pod_name"
+                    set pod_name $argv[$i]
+                end
+        end
+    end
+
+    if test -z "$pod_name"
+        echo "Usage: keti <pod-name> [-n <namespace>]"
+        return 1
+    end
+
+    if test -n "$namespace"
+        kubectl exec -ti $pod_name -n $namespace -- bash
     else
-        echo "Usage: keti <pod_name >"
+        kubectl exec -ti $pod_name -- bash
     end
 end
 
