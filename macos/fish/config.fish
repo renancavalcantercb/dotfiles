@@ -129,6 +129,7 @@ alias youtube='open -a "Firefox" "https://www.youtube.com/"'
 # SSH aliases
 alias ssh_gcp="ssh -i ~/.ssh/id_rsa renan-dev@34.16.203.5"
 alias ssh_orangepi="ssh renanserv@192.168.1.20"
+alias gssh='TERM=xterm gcloud compute ssh'
 
 # jmeter alias
 alias jmeter='home && cd /Users/renan-dev/Desktop/jmeter/jmeter/bin && ./jmeter'
