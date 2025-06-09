@@ -12,8 +12,8 @@ set -x DOCKER_HOST unix://$HOME/.colima/default/docker.sock
 set -x LOOQBOX_HOME /Users/renan-dev/Desktop/looqbox-dev/looqbox/interno/demo-dynamic/looqbox-dev/config
 
 # Java configuration
-# set -gx JAVA_HOME /Users/renan-dev/Library/Java/JavaVirtualMachines/corretto-21.0.2/Contents/Home/bin/java
-set -gx JAVA_HOME /Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home/bin/java
+set -gx JAVA_HOME /Users/renan-dev/Library/Java/JavaVirtualMachines/corretto-21.0.2/Contents/Home
+#set -gx JAVA_HOME /Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home
 set -gx PATH $JAVA_HOME/bin $PATH
 
 # GO configuration
