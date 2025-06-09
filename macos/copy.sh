@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -x
 DEST_DIR="$HOME/Desktop/dotfiles/macos"
 mkdir -p "$DEST_DIR"
 
@@ -25,7 +25,6 @@ copy_item "$HOME/.config/starship.toml" "$DEST_DIR"
 copy_item "$HOME/.config/bat/config" "$DEST_DIR/bat"
 copy_item "$HOME/.config/borders/" "$DEST_DIR/borders"
 copy_item "$HOME/.config/skhd/skhdrc" "$DEST_DIR/skhd"
-copy_item "$HOME/.config/raycast/" "$DEST_DIR/raycast"
 copy_item "$HOME/.config/karabiner/" "$DEST_DIR/karabiner"
 
 cp "$HOME/.tmux.conf" "$DEST_DIR/"
