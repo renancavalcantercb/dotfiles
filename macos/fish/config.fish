@@ -48,6 +48,7 @@ alias top='btop'
 
 # Python aliases
 alias python='python3.12'
+alias pip="python -m pip"
 # alias pip='uv'
 
 # Abbreviations
