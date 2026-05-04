@@ -102,6 +102,9 @@ alias tfg='terraform graph'
 alias tfim='terraform import'
 alias tfin='terraform init'
 
+# ArgoCD Aliases
+alias restartargo='kubectl rollout restart statefulset argocd-application-controller -n argocd && kubectl rollout restart deployment/argocd-repo-server -n argocd'
+
 # Go aliases
 alias gob='go build'
 alias got='go test'
@@ -278,6 +281,14 @@ function genpass
 end
 
 starship init fish | source
+
+# Familiar — terminal companion
+set -gx PATH $HOME/bin $PATH
+
+function fish_postexec --on-event fish_postexec
+    $HOME/bin/familiar xp $argv[1] $status &
+    disown
+end
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"

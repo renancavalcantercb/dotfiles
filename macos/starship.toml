@@ -16,10 +16,17 @@ $kubernetes \
 $shell \
 $status \
 $time \
-$line_break  \
+$line_break \
+${custom.familiar} \
 [󱞪](fg:iris) """
 
 palette = "tokyonight_night"
+
+[custom.familiar]
+command = "$HOME/bin/familiar prompt"
+when = "true"
+format = "[$output ](fg:#c4a7e7)"
+shell = ["bash", "--noprofile", "--norc"]
 
 [palettes.tokyonight_night]
 overlay = "#393552"
