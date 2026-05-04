@@ -4,13 +4,14 @@ return {
     init = function()
       vim.filetype.add({
         filename = {
-          [".env"] = "sh",
+          [".env"] = "dotenv",
         },
         pattern = {
-          ["%.env%.[%w_.-]+"] = "sh",
+          ["%.env%.[%w_.-]+"] = "dotenv",
           ["%.envrc"] = "sh",
         },
       })
+      vim.treesitter.language.register("bash", "dotenv")
     end,
   },
 }
